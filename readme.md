@@ -53,11 +53,11 @@ Output:
 
 ![](./img/architecture.jpg)
 
-| Component Name | Usage      | Features                       |
-| -------------- | ---------- | ------------------------------ |
-| Node.js        | API server | Stateless                      |
-| MongoDB        | Database   | Faster than normal SQL DB      |
-| Redis          | Caching    | Memory-based key-value storage |
+| Component Name | Usage      | Features                                 |
+| -------------- | ---------- | ---------------------------------------- |
+| Node.js        | API server | Stateless, only R/W to MongoDB and Redis |
+| MongoDB        | Database   | Faster than normal SQL db                |
+| Redis          | Caching    | Memory-based key-value storage           |
 
 ### Workflow
 
