@@ -14,7 +14,8 @@ services:
     restart: always
 
   api-endpoint:
-    build: ./backend
+    # build: ./backend
+    image: johnnyip/url-shorterner:latest
     ports:
       - "3000:3000"
     depends_on:

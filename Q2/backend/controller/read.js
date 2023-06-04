@@ -7,19 +7,34 @@ module.exports = async (req, res) => {
     try {
         const id = req.params.id;
 
+        //start measuring time
+        let redisStartTime = process.hrtime();
+
         //try to find in redis cache
         const dataFromRedis = await redisClient.get(id)
+
+        //calculate elapsed time for redis
+        let redisEndTime = process.hrtime(redisStartTime);
+        console.log('Redis retrieval time (hr): %ds %dms', redisEndTime[0], redisEndTime[1] / 1000000);
+
 
         if (!dataFromRedis) {
             // Not found in redis
             console.log("Redis cache miss")
+
+            //start measuring time
+            let dbStartTime = process.hrtime();
 
             // Get the documents collection
             const db = mongoClient.db("Sample");
             const collection = db.collection('urls');
             // Find some documents
             result = await collection.find({ _id: id }).toArray();
-            console.log(`db result: ${result}`)
+            // console.log(`db result: ${result}`)
+
+            //calculate elapsed time for mongodb
+            let dbEndTime = process.hrtime(dbStartTime);
+            console.log('MongoDB retrieval time (hr): %ds %dms', dbEndTime[0], dbEndTime[1] / 1000000);
 
             // Save the result to the redis cache
             if (result !== undefined && result.length > 0) {
@@ -31,7 +46,7 @@ module.exports = async (req, res) => {
             }
         } else {
             // Found in redis
-            // console.log("Redis cache hit")
+            console.log("Redis cache hit")
             result = JSON.parse(dataFromRedis)
         }
 

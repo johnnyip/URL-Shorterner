@@ -13,8 +13,14 @@ RUN npm install
 # Bundle application source inside Docker image
 COPY . .
 
+# Run tests
+RUN npm test
+
+# If tests are successful, build the production version
+RUN npm run build
+
 # Expose port 3000 for the application.
 EXPOSE 3000
 
 # Define the command to run the application
-CMD [ "node", "index.js" ]
+CMD [ "node", "server.js" ]
