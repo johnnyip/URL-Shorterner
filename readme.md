@@ -73,6 +73,9 @@ Output:
 2. If cache hit, get the original uri and 302 redirect to that url
 3. If cache miss, use the ID to retrieve object from MongoDB, save it in Redis and 302 redirect to url
 
+- Although it require extra time to read the data from db, it only affect the performance of the first request
+- The following requests will be read from high-speed memory-based Redis cache
+
 ### Local Development (Mac)
 
 - Use compose.yml to create development MongoDB and Redis instance
