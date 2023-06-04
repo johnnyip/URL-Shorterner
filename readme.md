@@ -3,6 +3,16 @@
 Names of the shell script file:
 `a_count.sh`, `b_top10.sh`, `c_location.sh`
 
+Execute the scripts, where `test.log.gz` is placed in Q1 directory
+
+```
+cd Q1
+chmod +x *.sh
+./a_count.sh
+./b_top10.sh
+./c_location.sh
+```
+
 ### a. Count the total number of HTTP requests recorded in this log file
 
 Output:
