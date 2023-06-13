@@ -1,5 +1,3 @@
-Name: IP Chi Chuen
-
 ## Q1. Log Analytics
 
 Names of the shell script file:
